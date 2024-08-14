@@ -16,7 +16,7 @@ print(type(number))
 print(123)      # 숫자 출력
 print("Python") # 문자열 출력
 print([1 , 2, 3])   # 리스트 출력
-# +연산자를 이용한 문자열 연
+# +연산자를 이용한 문자열 연결
 print("python"+" is fun")
 # ,쉼표를 이용한 문자열 연결
 print("python" , "is fun")
