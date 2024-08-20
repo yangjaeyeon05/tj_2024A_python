@@ -11,8 +11,8 @@ names = ""  # 여러개 name들을 저장하는 문자열
 
 def nameCreate():
     newName = input("이름을 입력 해주세요 : ")
-    global names
-    names += newName
+    global names        # 함수 밖에 있는 변수 불러오는 키워드 global
+    names += newName    # names 문자열에 입력받은 값 저장하기
     return
 
 def nameRead( ):
@@ -24,14 +24,14 @@ def nameUpdate( ):
     newName = input("새로운 이름을 입력 해주세요 : ")
     global names
     if names.count(name) == 1:      # 만약 name이 names에 존재하면
-        names = names.replace(name, newName)    # names에 대입을 하지 않으면 기존 저장한 내용만 출력
+        names = names.replace(name, newName)    # names에 대입을 하지 않으면 기존 저장한 내용만 출력 , 기존 문자 새로운 문자로 저장
     return
 
 def nameDelete( ):
     name = input("삭제할 이름을 입력 해주세요 : ")
     global names
     if names.count(name) == 1:      # 만약 name이 names에 존재하면
-        names = names.replace(name, "")         # names에 대입을 하지 않으면 기존 저장한 내용만 출력
+        names = names.replace(name, "")         # names에 대입을 하지 않으면 기존 저장한 내용만 출력 , 기존 문자 없애기
     return
 
 while True: # 무한루프
