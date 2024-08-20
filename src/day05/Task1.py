@@ -23,13 +23,15 @@ def nameUpdate( ):
     name = input("수정할 이름을 입력 해주세요 : ")
     newName = input("새로운 이름을 입력 해주세요 : ")
     global names
-    names = names.replace(name , newName)
+    if names.count(name) == 1:
+        names = names.replace(name, newName)
     return
 
 def nameDelete( ):
     name = input("삭제할 이름을 입력 해주세요 : ")
     global names
-    names = names.replace(name , "")
+    if names.count(name) == 1:
+        names = names.replace(name, "")
     return
 
 while True: # 무한루프
