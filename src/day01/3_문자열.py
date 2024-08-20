@@ -29,6 +29,10 @@ World
 #[5] 문자열 연산하기
     # (1) 문자열 더해서 연결하기 "문자열" + "문자열"
 print("Python"+" is fun")
+a = "Python"
+b = " is fun"
+a = a+b
+print(a)
     # (2) 문자열 곱하기 , "문자열" * 반복수
 print("Python"*2)
 print("="*50)
