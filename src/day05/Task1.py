@@ -23,15 +23,15 @@ def nameUpdate( ):
     name = input("수정할 이름을 입력 해주세요 : ")
     newName = input("새로운 이름을 입력 해주세요 : ")
     global names
-    if names.count(name) == 1:
-        names = names.replace(name, newName)
+    if names.count(name) == 1:      # 만약 name이 names에 존재하면
+        names = names.replace(name, newName)    # names에 대입을 하지 않으면 기존 저장한 내용만 출력
     return
 
 def nameDelete( ):
     name = input("삭제할 이름을 입력 해주세요 : ")
     global names
-    if names.count(name) == 1:
-        names = names.replace(name, "")
+    if names.count(name) == 1:      # 만약 name이 names에 존재하면
+        names = names.replace(name, "")         # names에 대입을 하지 않으면 기존 저장한 내용만 출력
     return
 
 while True: # 무한루프
