@@ -29,7 +29,7 @@ if __name__ == "__main__" :
         if row:  # 만약에 데이터가 존재하면
             cols = row.split(',')
             region = Region(cols[0], cols[1] , cols[2] , cols[3] , cols[4]) # 객체 변수에 맞는 값 저장하고
-            region.남비 = region.남자비율(int(cols[2]) , int(cols[1]))    # 프린트할 남자비율과
+            region.남비 = region.남자비율(int(cols[2]) , int(cols[1]))    # 문자열로 받은 숫자형식이기 때문에 int 함수 , 프린트할 남자비율과
             region.여비 = region.여자비율(int(cols[3]) , int(cols[1]))    # 여자비율 구해서
             list.append(region)                                         # 리스트에 저장
     for line in list:
