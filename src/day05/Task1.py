@@ -7,16 +7,21 @@
 # [조건3] : names 변수 외 추가적인 전역 변수 생성 불가능.
 # [조건4] : 최대한 리스트 타입 사용하지 않기
 # 제출 : git에 commit 후 카톡방에 해당 과제가 있는 링크 제출
+
+# 하나의 변수에 여러가지 정보 # 1. JSON 2. CSV 3. 객체 4. 딕셔너리 5. 리스트
 names = ""  # 여러개 name들을 저장하는 문자열
 
 def nameCreate():
     newName = input("이름을 입력 해주세요 : ")
-    global names        # 함수 밖에 있는 변수 불러오는 키워드 global
-    names += newName    # names 문자열에 입력받은 값 저장하기
-    return
+    # names 문자열에 입력받은 값 저장하기
+    if names == "":                     # 만약 names에 아무것도 없으면
+        return names + newName
+    else:                               # 만약 names에 미리 입력받은 값이 있으면
+        return names + "," + newName
 
 def nameRead( ):
-    print(names)
+    for name in names.split(','):    # 문자열내 , 쉼표 기준으로 분해
+        print(name)
     return
 
 def nameUpdate( ):
@@ -25,7 +30,7 @@ def nameUpdate( ):
     global names
     if names.count(name) == 1:      # 만약 name이 names에 존재하면
         names = names.replace(name, newName)    # names에 대입을 하지 않으면 기존 저장한 내용만 출력 , 기존 문자 새로운 문자로 저장
-    return
+    return names
 
 def nameDelete( ):
     name = input("삭제할 이름을 입력 해주세요 : ")
@@ -37,7 +42,7 @@ def nameDelete( ):
 while True: # 무한루프
     ch = int(input("1. create 2. read 3. update 4. delete 5. exit: "))
     if ch == 1:
-        nameCreate()
+        names = nameCreate()
         print(names)
     elif ch == 2:
         nameRead()
