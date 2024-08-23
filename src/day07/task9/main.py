@@ -1,4 +1,4 @@
-# day07 > task9 > main.py
+# day07 > task9 > main.py 내 풀이
 '''
     csv파일 다루기
     파일 : 인천광역시_부평구_인구현황.csv
