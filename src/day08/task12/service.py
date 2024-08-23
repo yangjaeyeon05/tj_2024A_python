@@ -29,10 +29,38 @@ def max_min_list():
     newList = []
     for dic in data:
         newList.append(int(dic['contract_amount']))
-    print(max(newList))
-    return
+    maxValue = max(newList)
+    minValue = min(newList)
+    print(maxValue)
+    max_min_list = []
+    maxlist = []
+    minlist = []
+    for dic in data:
+        if int(dic['contract_amount']) == maxValue:
+            max_min_list.append(dic)
+        if int(dic['contract_amount']) == minValue:
+            max_min_list.append(dic)
+    return max_min_list
+    print(max_min_list)
+    return max_min_list
 
-print(max_min_list())
+# print(max_min_list())
+from collections import Counter
+# [3] OO 구별 거래량 수 계산해서 출력
+def totaltradingvolume():
+    newList = []
+    location = []
+    var = []
+    for dic in data:
+        newList.append(dic['location'])
+    for i in newList:
+        location.append(i.split(" "))
+    for j in location:
+        var.append(j[1])
+    print(var)
+    collec = Counter(var)
+    print(collec)
+print(totaltradingvolume())
 
 # [4] 단지명 별로 거래량 계산해서 거래량이 많은 단지명 TOP10 출력
 def top_ten_transaction():
