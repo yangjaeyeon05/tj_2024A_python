@@ -11,4 +11,7 @@ def personData():
             cols = row.split(',')
             region = Region(cols[0], int(cols[1]), int(cols[2]), int(cols[3]), cols[4])
             list.append(region)
+    print(list)
     return list # 리스트 반환
+
+print(personData())
