@@ -1,0 +1,38 @@
+[
+    {
+        "nat_cd": 275,
+        "nat_name": "미국",
+        "visit_cnt": 61754,
+        "yyyymm": "202401"
+    },
+    {
+        "nat_cd": 275,
+        "nat_name": "미국",
+        "visit_cnt": 62607,
+        "yyyymm": "202402"
+    },
+    {
+        "nat_cd": 275,
+        "nat_name": "미국",
+        "visit_cnt": 119955,
+        "yyyymm": "202403"
+    },
+    {
+        "nat_cd": 275,
+        "nat_name": "미국",
+        "visit_cnt": 122728,
+        "yyyymm": "202404"
+    },
+    {
+        "nat_cd": 275,
+        "nat_name": "미국",
+        "visit_cnt": 122694,
+        "yyyymm": "202405"
+    },
+    {
+        "nat_cd": 275,
+        "nat_name": "미국",
+        "visit_cnt": 151721,
+        "yyyymm": "202406"
+    }
+]

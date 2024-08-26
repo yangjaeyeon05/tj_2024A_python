@@ -1,3 +1,6 @@
+import locale
+from datetime import datetime
+
 f = open("아파트(매매)_실거래가_20240823.csv", 'r' , encoding='cp949')
 list = []
 data = f.read() # 파일 읽기
@@ -60,7 +63,7 @@ def totaltradingvolume():
 
 # [4] 단지명 별로 거래량을 계산 하여 거래량이 많은 단지명 TOP10 계산 하여 출력
 def top_ten_transaction():
-    newList = []  # 시군구만 뽑고 공백 기준으로 잘라서 구만 넣을 리스트
+    newList = []  # 단지명만 뽑아서 넣을 리스트
     for dic in list:
         newList.append(dic['name'])
     # print(newList)
@@ -72,9 +75,36 @@ def top_ten_transaction():
     top_ten_list = []
     for data in collec[ : 10]:
         top_ten_list.append(data)
-    print(top_ten_list)
+    # print(top_ten_list)
     return top_ten_list
 
-print(top_ten_transaction())
+# print(top_ten_transaction())
 
-# [5] 년월 별 거래량 과 전월대비 증감율 계산 하여 출력 하기
+# [5] 년 월 별 거래량과 전월대비 증감 계산, 첫 월과 끝 월은 거래량만
+def compare_transaction():
+    newList = []    # 년월별만 뽑아서 넣어줄 리스트
+    for dic in list:
+        newList.append(dic['year_month'])
+    print(newList)
+    collec = dict(Counter(newList))
+    print(collec)
+    collec = dict(sorted(collec.items(), key=lambda x: x[0])) # 년월별로 순차정렬
+    print(collec)
+    print(type(collec))
+    compareList = []
+    year_month_list = collec.keys()
+    print(year_month_list)
+    valus_list = collec.values()
+    print(valus_list)
+    previous_value = None
+    for value in collec.values():
+        if previous_value is not None:
+            percentage_change = round(((value - previous_value) / previous_value) * 100)
+            compareList.append(percentage_change)
+        previous_value = value
+    compareList.insert(0 , 0)   # 다른 리스트들과 zip하기 위해 첫번째 값에 0 널기
+    print(compareList)
+    # result = list(zip(year_month_list , valus_list ,compareList ))
+    print(result)
+
+print(compare_transaction())
