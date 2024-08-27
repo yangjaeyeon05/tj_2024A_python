@@ -53,7 +53,8 @@ def main():
     jsonResult = [] # 수집한 데이터 저장할 리스트
     # 매개변수
     title = input("검색어를 입력하세요 : ")
-    jsonResult = getSuggestionsService(title , 1 , 1000)
+    jsonResult = getSuggestionsService(title , 1 , 100)
+
     with open(f'ChunmanFreeSuggestions-{title}.json', 'w', encoding="utf-8") as file:
         jsonFile = json.dumps(jsonResult, indent=4, sort_keys=True, ensure_ascii=False)
         file.write(jsonFile)
