@@ -60,13 +60,15 @@ def index():
     # print(f'>>>data : {data}')
     # DataFrame 객체 json으로 변환
     df = pd.DataFrame(data)
-    df_json = df.to_json(orient='index', indent=4, force_ascii=False )
-    print(df_json)
+    df_json = df.to_json(orient='index', indent=4, force_ascii=False)   # text/html; charset=utf-8
+    # print(df_json)
+    dataDict = df.to_dict(orient="index")   # 	application/json
+    print(dataDict)
     # 파일 저장
-    with open(f'qooqoo.json', 'w', encoding='utf-8') as file:
-        jsonFile = json.dumps(df_json, indent=4, sort_keys=True, ensure_ascii=False)
-        file.write(jsonFile)
-    return df_json
+    # with open(f'qooqoo.json', 'w', encoding='utf-8') as file:
+    #     jsonFile = json.dumps(df_json, indent=4, sort_keys=True, ensure_ascii=False)
+    #     file.write(jsonFile)
+    return dataDict
 
 if __name__ == "__main__":
     app.run(debug=True)
