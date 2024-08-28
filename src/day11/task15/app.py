@@ -14,7 +14,7 @@ from controller import *
 
 # 3. 플라스크 웹 실행
 if __name__ == "__main__":
-    app.run(host='0.0.0' , debug=True)
+    app.run(host='0.0.0.0' , debug=True)
     # http://127.0.0.1:5000
     # http://localhost:5000
     # http://IP주소:5000
