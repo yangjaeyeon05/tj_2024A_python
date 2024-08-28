@@ -68,7 +68,7 @@ def index():
     # with open(f'qooqoo.json', 'w', encoding='utf-8') as file:
     #     jsonFile = json.dumps(df_json, indent=4, sort_keys=True, ensure_ascii=False)
     #     file.write(jsonFile)
-    return dataDict
+    return df_json
 
 if __name__ == "__main__":
     app.run(debug=True)

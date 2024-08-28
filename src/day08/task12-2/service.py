@@ -105,6 +105,6 @@ def compare_transaction():
     compareList.insert(0 , 0)   # 다른 리스트들과 zip하기 위해 첫번째 값에 0 널기
     print(compareList)
     # result = list(zip(year_month_list , valus_list ,compareList ))
-    print(result)
+    # print(result)
 
 print(compare_transaction())
