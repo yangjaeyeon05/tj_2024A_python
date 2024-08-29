@@ -49,6 +49,7 @@ def getJobInfo(result):
                 announcementName = row.select("div")[1].select_one('a').text.strip(); # print(f'>>> announcementName : {announcementName}')
                 listInfo = row.select("div")[1].select_one('ul')
                 # print(f'listInfo : {len(listInfo)}')
+                # chipInfoGroup 에 없는 조건들이 있어서 하나의 리스트로 받아서 한번에 넣어주기
                 chipInfoGroup = []
                 chipInfo = listInfo.text
                 # print(chipInfo)
@@ -95,7 +96,7 @@ def read_csv_to_json(fileName):
     # print( result )
     for r in result:
         print( r )
-        r['기타'] = eval(r['기타']) # 2차원 리스트 안에 있는거까지 변환을 못해줌 그래서 eval() 함수
+        r['기타'] = eval(r['기타']) # 2차원 리스트 안에 있는거까지 변환을 못해줌 그래서 eval() 함수를 써서 강제로 리스트타입으로 바꿔주기
     # print(result)
     return result
 
