@@ -25,3 +25,6 @@ def highesttrading():
     print(result)
     return result
 
+@app.route("/trans" , methods = ['get'])
+def trans():
+    return total1()
