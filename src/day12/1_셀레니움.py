@@ -14,12 +14,12 @@ def CoffeeBean_store(result):
     for i in range(1 , 10): # 테스트는 1~9까지만 연결
         # 1. 커피빈 웹페이지 연결
         wd.get("https://www.coffeebeankorea.com/store/store.asp")
-        time.sleep(2)   # 1초 일시정지(대기상태) # 웹페이지가 열릴때까지 2초 대기 # 컴퓨터 사양에 따라 다를 수 있다.
+        time.sleep(1)   # 1초 일시정지(대기상태) # 웹페이지가 열릴때까지 2초 대기 # 컴퓨터 사양에 따라 다를 수 있다.
 
         try:
             # 2. 커피빈 웹페이지의 자바 스크립트 함수 호출 , .execute_script("js함수호출")
             wd.execute_script(f"storePop2({i})")  # 31번 매장인 "삼성봉은사거리점" 모달 창 열린다.
-            time.sleep(2)   # 1초 일시정지(대기상태) # 스크립트가 실행이 끝날때까지 2초 대기 # 컴퓨터 사양에 따라 다를 수 있다.
+            time.sleep(1)   # 1초 일시정지(대기상태) # 스크립트가 실행이 끝날때까지 2초 대기 # 컴퓨터 사양에 따라 다를 수 있다.
 
             # 3. 자바스크립트 함수가 수행된 페이지의 소스 코드를 저장
             html = wd.page_source

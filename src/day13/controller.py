@@ -18,3 +18,14 @@ def getTimeDescribe():
     result = timeDescribe()
     # print(result)
     return result
+
+@app.route("/highestpopulation" , methods=['get']) # http://localhost:5000/total
+def gethighest_population():
+    result = highest_population()
+    print(result)
+    return result
+
+@app.route("/codemalefemale" , methods=['get']) # http://localhost:5000/total
+def code_male_female():
+    result = data_add()
+    return result

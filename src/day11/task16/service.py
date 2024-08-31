@@ -95,9 +95,9 @@ def read_csv_to_json(fileName):
     result = json.loads(jsonResult)    # json.loads() 문자열타입(json형식) ---> py타입(json형식) 변환
     # print( result )
     for r in result:
-        print( r )
+        # print( r )
         r['기타'] = eval(r['기타']) # 2차원 리스트 안에 있는거까지 변환을 못해줌 그래서 eval() 함수를 써서 강제로 리스트타입으로 바꿔주기
-    # print(result)
+    print(result)
     return result
 
 # [2] [PY 서비스추가] 총채용공고수 , 경력별 공고수 , 학력별 공고수 를 [1]번 테이블 위에 출력 하시오.

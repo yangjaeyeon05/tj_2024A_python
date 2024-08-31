@@ -5,9 +5,9 @@ from service import *
 def getJob():
     result = []
     getJobInfo(result)
-    list2d_to_csv(result, 'jobInfo', ['회사명', '공고명', '기타'])  # 매장정보를 csv로 저장 서비스 호출
+    # list2d_to_csv(result, 'jobInfo', ['회사명', '공고명', '기타'])  # 매장정보를 csv로 저장 서비스 호출
     result2 = read_csv_to_json('jobInfo')
-    # print(result2)
+    print(f'>> result2 : {result2}')
     return result2
 
 @app.route("/totalJob" , methods=['get']) # http://localhost:5000/qooqoo
