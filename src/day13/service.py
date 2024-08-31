@@ -16,7 +16,7 @@ def totalDescribe():
     result = json.loads(total_describe)
     return result
 
-# 행정동코드별 기술통계
+# 시간대별 총 인구수 기술통계
 def timeDescribe():
     time_describe = df.groupby('시간대구분')['총생활인구수'].describe().to_json()
     # print(time_describe)
