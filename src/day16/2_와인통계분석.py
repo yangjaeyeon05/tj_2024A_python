@@ -199,7 +199,7 @@ plt.title("Quality of Wine Type")   # 3. 차트 제목
 plt.legend()    # 4. 차트 범례 표시
 plt.show()  # 5. 차트 보기
 
-import statsmodels.api as sm
+import statsmodels.api as sm    # 맥의 경우 0.14.2 최신 버전 안됨 0.14.1로 설치 (터미널에서)
 # 1, 부분 회귀에 사용할 등급과 고정산
 others = list(set(wine.columns).difference(set(["quality" , "fixed_acidity"])))
     # 1. list() : 리스트 타입 반환 함수
