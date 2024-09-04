@@ -24,7 +24,7 @@ print(titanic.isnull().sum())   # 확인 embarked에 결측값이 없어졌다.
 print(titanic['embark_town'].value_counts())
 titanic['embark_town'] = titanic['embark_town'].fillna('Southampton')
 print(titanic.isnull().sum())   # 확인 embark_town에 결측값이 없어졌다.
-    # (4) deck 열의 결측값을 최빈값으로 치환
+    # (4) deck 열의 결측값을 최빈값으로 치환     # 배의 갑판
 print(titanic['deck'].value_counts())
 titanic['deck'] = titanic['deck'].fillna('C')
 print(titanic.isnull().sum())   # 확인 deck에 결측값이 없어졌다.
@@ -80,7 +80,7 @@ titanic_corr.to_csv('타이타닉상관계수표.csv' , index=True)
 # 특정한 변수 사이의 상관 계수 추출
 print(titanic['survived'].corr(titanic['adult_male']))  # -0.5570800422053259
                 # 종속변수                  # 독립변수
-print(titanic['survived'].corr(titanic['fare']))    # 0.2573065223849622
+print(titanic['survived'].corr(titanic['fare']))    # 0.2573065223849622    # fare 요금
                 # 종속변수                  # 독립변수
 
 
