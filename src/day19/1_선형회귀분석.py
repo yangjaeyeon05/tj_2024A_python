@@ -119,8 +119,6 @@ MAE = mean_absolute_error(실제값 , 예측값)
 print(f'MAE : {MAE}')
 
 
-
-
 실제영화평점 = [4.5 , 3.0 , 5.0]
 예측영화평점 = [4.0 , 3.5 , 4.8]
 MAE = mean_absolute_error(실제영화평점 , 예측영화평점)
