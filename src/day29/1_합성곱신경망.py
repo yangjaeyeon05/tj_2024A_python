@@ -104,55 +104,75 @@ print(y_valid[0]) # 종속변수 # 10000개 중에 첫번째 손글씨의 정답
 print(np.argmax(model.predict(x_valid_in)[0])) # 독립변수 # 테스트용으로 예측하기
 # argmax() : 배열 내 가장 큰 값을 가진 요소의 인덱스 반환
 
-# 모델 구조
+# 12. 모델 구조
 print(model.summary())
-# 입력 텐서 형태
-print(model.inputs)
+'''
+Model: "sequential"
+┌─────────────────────────────────┬────────────────────────┬───────────────┐
+│ Layer (type)                    │ Output Shape           │       Param # │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv (Conv2D)                   │ (None, 26, 26, 32)     │           320 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ pool (MaxPooling2D)             │ (None, 13, 13, 32)     │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ flatten (Flatten)               │ (None, 5408)           │             0 │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense (Dense)                   │ (None, 10)             │        54,090 │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+ Total params: 163,232 (637.63 KB)
+ Trainable params: 54,410 (212.54 KB)
+ Non-trainable params: 0 (0.00 B)
+ Optimizer params: 108,822 (425.09 KB)
+'''
+# 13. 모델 속성 확인 입력 텐서 형태
+print(model.inputs) # [<KerasTensor shape=(None, 28, 28, 1), dtype=float32, sparse=False, name=keras_tensor>]
 # 출력 텐서 형태
-print(model.outputs)
-# 레이어
-print(model.layers)
+print(model.outputs) # [<KerasTensor shape=(None, 10), dtype=float32, sparse=False, name=keras_tensor_4>]
+# 레이어 출력
+print(model.layers) # [<Conv2D name=conv, built=True>, <MaxPooling2D name=pool, built=True>, <Flatten name=flatten, built=True>, <Dense name=dense, built=True>]
 # 첫번째 레이어 선택
-print(model.layers[0])
-# 첫번째 레이어 입력
-print(model.layers[0].input)
-# 첫번째 레이어 출력
-print(model.layers[0].output)
+print(model.layers[0]) # <Conv2D name=conv, built=True>
+# 첫번째 레이어 입력 텐서
+print(model.layers[0].input) # <KerasTensor shape=(None, 28, 28, 1), dtype=float32, sparse=False, name=keras_tensor>
+# 첫번째 레이어 출력 텐서
+print(model.layers[0].output) # <KerasTensor shape=(None, 26, 26, 32), dtype=float32, sparse=False, name=keras_tensor_1>
 # 첫번째 레이어 가중치
-print(model.layers[0].weights)
-# 첫번쨰 레이어 커널가중치
-print(model.layers[0].kernel)
+print(model.layers[0].weights) # [<KerasVariable shape=(3, 3, 1, 32), dtype=float32, path=sequential/conv/kernel>, <KerasVariable shape=(32,), dtype=float32, path=sequential/conv/bias>]
+# 첫번쨰 레이어 커널가중치 # 커널(필터) 행렬의 가중치
+print(model.layers[0].kernel) # <KerasVariable shape=(3, 3, 1, 32), dtype=float32, path=sequential/conv/kernel>
 # 첫번째 레이어 bias 가중치
-print(model.layers[0].bias)
+print(model.layers[0].bias) # 상수항 # y = ax +b(상수항) # <KerasVariable shape=(32,), dtype=float32, path=sequential/conv/bias>
 # 레이어 이름 사용하여 레이어 선택
 model.get_layer('conv')
 
 # 샘플 이미지의 레이어별 출력을 리스트에 추가(첫번째 , 두번째 레이어)
-activator = tf.keras.Model(inputs=model.inputs,
+activator = tf.keras.Model(inputs=model.inputs, # input -> inputs
+# 기존 모델의 입력을 사용한다.
                            outputs=[layer.output for layer in model.layers[:2]])
-activations = activator.predict(x_train_in[0][tf.newaxis, ...])
-
+# 기존 모델의 첫번째와 두번째 출력을 출력으로 지정한다.
+# 파이썬 컴프리헨션 : [ 표현식 for 반복변수 in 리스트/range() ]
+activations = activator.predict(x_train_in[0][tf.newaxis, ...]) # 흑백이므로 1차원 추가한다.
 print(len(activations))
-
 # 첫번째 레이어(conv) 출력층
-conv_activation = activations[0]
-print(conv_activation.shape)
+conv_activation = activations[0] # 첫번째 output # 합성곱 output
+print(conv_activation.shape) # (1 , 26 , 26 , 32) # (원본 , 가로 , 세로 , 커널/필터결과)
 
-# 시각화
+# 14. 합성곱 시각화 # 합성곱 결과 인 특성맵 시각화
 fig, axes = plt.subplots(4 , 8)
 fig.set_size_inches(10 , 5)
 
-for i in range(32):
+for i in range(32): # 특성맵(필터/커널 결과) 32개라서
     axes[i//8 , i%8].matshow(conv_activation[0, :, :, i], cmap='viridis')
-    axes[i // 8, i % 8].set_title('kernel %s'%str(i), fontsize=10)
-    plt.setp(axes[i // 8, i % 8].get_xticklabels(), visible=False)
-    plt.setp(axes[i // 8, i % 8].get_yticklabels(), visible=False)
+    axes[i//8 , i%8].set_title('kernel %s'%str(i), fontsize=10)
+    plt.setp(axes[i//8, i%8].get_xticklabels(), visible=False)
+    plt.setp(axes[i//8, i%8].get_yticklabels(), visible=False)
 
 plt.tight_layout()
 plt.show()
 
+# 15. 풀링 시각화 # 풀링 결과를 시각화 # 픽셀 수가 줄어들었다. # 특성은 살리면서 일반화 하는 작업 # 과대적합 방지
 # 두번째 레이어(pool)출력층
-pooling_activation = activations[1]
+pooling_activation = activations[1] # 두번째 output # pooling output
 print(pooling_activation.shape)
 
 # 시각화
@@ -161,9 +181,9 @@ fig.set_size_inches(10 , 5)
 
 for i in range(32):
     axes[i//8 , i%8].matshow(pooling_activation[0, :, :, i], cmap='viridis')
-    axes[i // 8, i % 8].set_title('kernel %s'%str(i), fontsize=10)
-    plt.setp(axes[i // 8, i % 8].get_xticklabels(), visible=False)
-    plt.setp(axes[i // 8, i % 8].get_yticklabels(), visible=False)
+    axes[i//8, i%8].set_title('kernel %s'%str(i), fontsize=10)
+    plt.setp(axes[i//8, i%8].get_xticklabels(), visible=False)
+    plt.setp(axes[i//8, i%8].get_yticklabels(), visible=False)
 
 plt.tight_layout()
 plt.show()
