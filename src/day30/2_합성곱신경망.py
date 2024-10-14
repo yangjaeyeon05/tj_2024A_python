@@ -55,3 +55,12 @@ img = img/255.0
 # 5. 모델을 이용한 새로운 이미지 예측하기
 result = model.predict(img[tf.newaxis , ...]) # (32 , 32 , 3) ---> (1 , 32 , 32 , 3)
 print(tf.argmax(result[0]).numpy()) # 가장 높은 확률을 가진 종속 변수
+
+
+
+
+
+
+
+
+
