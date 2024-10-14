@@ -42,13 +42,7 @@ flat_inputs = tf.keras.layers.Flatten()(inputs)
 # 입력레이어 합치기
 concat = tf.keras.layers.Concatenate()([flat , flat_inputs])
 
-# 추가 레이어
-dense1 = tf.keras.layers.Dense(128, activation='relu')(concat)
-dropout1 = tf.keras.layers.Dropout(0.5)(dense1)  # 50% 드롭아웃
-dense2 = tf.keras.layers.Dense(64, activation='relu')(dropout1)
-
-# 출력 레이어
-outputs = tf.keras.layers.Dense(10, activation="softmax")(dense2)
+outputs = tf.keras.layers.Dense(10 , activation="softmax")(concat)
 
 model = tf.keras.models.Model(inputs=inputs , outputs=outputs)
 print(model.summary())
