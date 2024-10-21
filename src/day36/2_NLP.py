@@ -28,7 +28,7 @@ print(tokenizer.texts_to_sequences(sentences)) # 인코딩1 # [[2, 5, 3, 3, 4], 
 print(tokenizer.texts_to_sequences(new_sentence)) # 인코딩2 # [[2, 1, 5, 4]]
 
 # 단어 사전의 최대 개수 설정 # 최대 개수와 단어들은 <OOV> 표현된다. # num_words=(N-1)개
-tokenizer = Tokenizer(num_words=3 , oov_token="<OOV>") # 사전 목록의 단어수는 최대 2(N-1)개이며, 나머지는 <OOV> 표현
+tokenizer = Tokenizer(num_words=3 , oov_token="<OOV>") # 사전 목록의 단어수는 최대 2 , (N-1)개이며, 나머지는 <OOV> 표현
 tokenizer.fit_on_texts(sentences)
 print(tokenizer.word_index) # {'<OOV>': 1, '영실이는': 2, '정말': 3, '좋아해': 4, '나를': 5, '영화를': 6}
 print(tokenizer.texts_to_sequences(sentences)) # [[2, 1, 1, 1, 1], [2, 1, 1]] # '정말' , '좋아해' 빈도수가 같아서 중복이 들어가서 다 1로 나옴 # 시퀀스에 포함이 안됨
