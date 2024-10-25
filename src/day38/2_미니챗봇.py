@@ -69,7 +69,7 @@ from tensorflow.keras.layers import Embedding , LSTM , Dense , Bidirectional #
 model = Sequential( )
 print(len(tokenizer.word_index ))
 print(tokenizer.word_index)
-model.add( Embedding( input_dim= len(tokenizer.word_index)+1 , output_dim = 50 , input_length=max_sequence_length ) )
+model.add( Embedding( input_dim= len(tokenizer.word_index) , output_dim = 50 , input_length=max_sequence_length) )
 print(model)
 model.add( Bidirectional( LSTM( 256 ) ) ) ,  #  256 , 128 , 64 , 32
 model.add( Dense( len(outputs)  , activation='softmax') ) # 종속변수의 값 개수는 응답 개수
